@@ -1,60 +1,65 @@
-import { createUserWithEmailAndPassword
-       ,onAuthStateChanged
-       ,signInWithEmailAndPassword,
-       signInWithPopup
-       ,updateProfile
-       ,signOut } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  signInWithPopup,
+  onAuthStateChanged,
+  updateProfile,
+} from "firebase/auth";
+import { auth, googleProvider } from "../firebase";
 
-import { auth,googleAuthProvider } from "../firebase";
-
-//Register with email password
-export const registerWithEmail = async (email , password ,fullName) =>{
-    try {
-        const userCredentials= await createUserWithEmailAndPassword(auth , email ,password);
-        //update Profile with the user Name 
-        await updateProfile(userCredentials.user,{
-            displayName: fullName
-        });
-        return userCredentials.user;
-    }
-    catch (error){
-        throw error ;
-    }
-}
-
-//Login with email and password
-export const loginWithEmail = async(email , password)=>{
- try{
-    const userCredentials = await signInWithEmailAndPassword(auth ,email,password);
-    return userCredentials.user;
- }
- catch (error){
+// Register with email/password
+export const registerWithEmail = async (email, password, fullName) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    // Update profile with the user's name
+    await updateProfile(userCredential.user, {
+      displayName: fullName,
+    }); //later use for user dashboard
+    return userCredential.user;
+  } catch (error) {
     throw error;
- }
-}
+  }
+};
 
-//Login with Google 
-export const loginWithGoogle = async ()=>{
-    try{
-        const result = await signInWithPopup(auth , googleAuthProvider);
-        return result
-    }
-    catch(error){
-        throw error;
-    }
-}
+// Login with email/password
+export const loginWithEmail = async (email, password) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    return userCredential.user;
+  } catch (error) {
+    throw error;
+  }
+};
 
-//logOut 
-export const logOut = async()=>{
-    try {
-        await signOut(auth);
-    }
-    catch(error){
-        throw error;
-    }
-}
+// Login with Google
+export const loginWithGoogle = async () => {
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    return result.user;
+  } catch (error) {
+    throw error;
+  }
+};
 
-//Auth State Change 
-export const observeAuthState = (callback) =>{
-    return onAuthStateChanged(auth , callback);
-}
+// Logout
+export const logout = async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Auth state observer
+export const observeAuthState = (callback) => {
+  return onAuthStateChanged(auth, callback);
+};

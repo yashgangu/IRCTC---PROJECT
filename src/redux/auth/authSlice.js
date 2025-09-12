@@ -1,69 +1,53 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginWithGoogle, registerWithEmail,loginWithEmail,logOut } from "../../services/authService";
+import { loginWithEmail, loginWithGoogle, logout, registerWithEmail } from "../../services/authService";
 
-const initialState = {
-  isLoginOpen: false,
-  isRegisterOpen: false,
-  isLoggedIn: false,
-  user: null,
-  loading:false,
-  error: null , 
-  isInitialized : false
-};
-
-//Async Thunk for Authentication 
-
+// Async thunks for authentication
 export const loginWithEmailAsync = createAsyncThunk(
   "auth/loginWithEmail",
-  async ({email , password},{rejectWithValue}) =>{
+  async ({ email, password }, { rejectWithValue }) => {
     try {
-      const user = await loginWithEmail(email , password);
+      const user = await loginWithEmail(email, password);
       return {
-        uid : user.id,
-        email : user.email,
-        displayName : user.displayName,
-        photoUrl : user.photoUrl
-      }
-    }
-    catch (error){
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+      };
+    } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
-
-
-export const registerWithEmailAsync = createAsyncThunk(
-  "auth/registerWithEmail",
-  async ({email , password, fullName},{rejectWithValue}) =>{
-    try {
-      const user = await registerWithEmail(email , password, fullName);
-      return {
-        uid : user.id,
-        email : user.email,
-        displayName : user.displayName,
-        photoUrl : user.photoUrl
-      }
-    }
-    catch (error){
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
 
 export const loginWithGoogleAsync = createAsyncThunk(
   "auth/loginWithGoogle",
-  async (_,{rejectWithValue}) =>{
+  async (_, { rejectWithValue }) => {
     try {
       const user = await loginWithGoogle();
       return {
-        uid : user.id,
-        email : user.email,
-        displayName : user.displayName,
-        photoUrl : user.photoUrl
-      }
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+      };
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
-    catch (error){
+  }
+);
+
+export const registerWithEmailAsync = createAsyncThunk(
+  "auth/registerWithEmail",
+  async ({ email, password, fullName }, { rejectWithValue }) => {
+    try {
+      const user = await registerWithEmail(email, password, fullName);
+      return {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+      };
+    } catch (error) {
       return rejectWithValue(error.message);
     }
   }
@@ -73,10 +57,9 @@ export const logoutAsync = createAsyncThunk(
   "auth/logout",
   async (_, { rejectWithValue }) => {
     try {
-      await logOut();
-      return;
-    }
-    catch (error){
+      await logout();
+      return null;
+    } catch (error) {
       return rejectWithValue(error.message);
     }
   }
@@ -84,23 +67,34 @@ export const logoutAsync = createAsyncThunk(
 
 const authSlice = createSlice({
   name: "auth",
-  initialState,
+  initialState: {
+    isLoginOpen: false,
+    isRegisterOpen: false,
+    isLoggedIn: false,
+    user: null,
+    loading: false,
+    error: null,
+    isInitialized: false,
+  },
+
   reducers: {
     toggleLoginModal: (state) => {
       state.isLoginOpen = !state.isLoginOpen;
-      if(state.isLoginOpen){
-      state.isRegisterOpen = false;
+      if (state.isLoginOpen) {
+        state.isRegisterOpen = false;
       }
-      state.error= null;
+      state.error = null;
     },
+
     toggleRegisterModal: (state) => {
       state.isRegisterOpen = !state.isRegisterOpen;
-      if(state.isLoginOpen){
-      state.isLoginOpen = false;
+      if (state.isRegisterOpen) {
+        state.isLoginOpen = false;
       }
-      state.error= null;
+      state.error = null;
     },
-     openLoginModal: (state) => {
+
+    openLoginModal: (state) => {
       state.isLoginOpen = true;
       state.isRegisterOpen = false;
       state.error = null;
@@ -141,7 +135,8 @@ const authSlice = createSlice({
       state.error = null;
     },
   },
-   extraReducers: (builder) => {
+
+  extraReducers: (builder) => {
     builder
       // Login with email
       .addCase(loginWithEmailAsync.pending, (state) => {
@@ -217,7 +212,14 @@ const authSlice = createSlice({
   },
 });
 
-export const { toggleLoginModal, toggleRegisterModal, openLoginModal, openRegisterModal, closeModals, setAuthState, clearError } =
-  authSlice.actions;
+export const {
+  toggleLoginModal,
+  toggleRegisterModal,
+  openLoginModal,
+  openRegisterModal,
+  closeModals,
+  setAuthState,
+  clearError,
+} = authSlice.actions;
 
 export default authSlice.reducer;
