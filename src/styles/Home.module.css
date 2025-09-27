@@ -120,12 +120,13 @@
     background-color: #c0392b;
 }
 
-.askDishaButton {
+.ShowTrain {
     background-color: #3498db;
     color: white;
+    border-radius: 5px;
 }
 
-.askDishaButton:hover {
+.ShowTrain:hover {
     background-color: #2980b9;
 }
 
