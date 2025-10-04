@@ -95,15 +95,12 @@ const TrainSearchResults = () => {
 
   // Use filtered trains if search params or filters are active, otherwise show all trains
   const displayTrains =
-    searchParams.from ||
-    searchParams.to ||
-    searchParams.travelClass ||
-    Object.values(filters).some((category) =>
-      Object.values(category).some((value) => value)
-    )
-      ? filteredTrains
-      : trains;
-
+  filteredTrains.length > 0 || 
+  Object.values(filters).some((category) =>
+    Object.values(category).some((value) => value)
+  )
+    ? filteredTrains
+    : trains;
   // Show loading state
   if (loading) {
     return (
@@ -185,10 +182,10 @@ const TrainSearchResults = () => {
             <label className={styles.checkboxLabel}>
               <input
                 type="checkbox"
-                checked={filters.trainType["Vaishali"]}
-                onChange={() => handleFilterChange("trainType", "Vaishali")}
+                checked={filters.trainType["Vande Bharat"]}
+                onChange={() => handleFilterChange("trainType", "Vande Bharat")}
               />
-              Vaishali
+              Vande Bharat 
             </label>
           </div>
           <div className={styles.filterColumn}>

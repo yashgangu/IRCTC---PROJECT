@@ -3,6 +3,8 @@
     width: 100%;
     padding: 20px;
     background-color: #f4f4f4;
+    align-items: flex-start;
+    
 }
 
 .filterSection {
@@ -12,6 +14,9 @@
     margin-right: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 90px;
+    height: fit-content;
 }
 
 .filterColumn {
@@ -30,6 +35,9 @@
 
 .trainList {
     flex-grow: 1;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+     padding-right: 10px;
 }
 
 .trainCard {

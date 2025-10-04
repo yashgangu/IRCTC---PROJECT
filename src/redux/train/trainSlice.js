@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { enrichTrainDataWithRoute } from "../../utils/trainDataHelper";
 
-const API_URL = 'https://mocki.io/v1/4ec50d1e-62ef-4910-85a4-8ab3f1d7baea';
+const API_URL = 'https://mocki.io/v1/d819e667-3750-4c04-abdb-0cb825ebb381';
 
 export const fetchTrains = createAsyncThunk(
   "trains/fetchTrains",
@@ -73,7 +73,7 @@ const trainSlice = createSlice({
       trainType: {
         Rajdhani: false,
         Shatabdi: false,
-        Vaishali: false,
+        "Vande Bharat": false,
       },
       departureTime: {
         "00:00 - 06:00": false,
@@ -157,25 +157,15 @@ const trainSlice = createSlice({
         );
       }
 
+      
       // Filter by travel class from search params
-      if (
-        state.searchParams.travelClass &&
-        state.searchParams.travelClass !== "All Classes"
-      ) {
-        filtered = filtered.filter((train) => {
-          if (!train.price) return false;
-          const classMap = {
-            "1A": "AC First Class",
-            "2A": "AC 2 Tier",
-            "3A": "AC 3 Tier",
-            SL: "Sleeper",
-          };
-          const classDisplayName =
-            classMap[state.searchParams.travelClass] ||
-            state.searchParams.travelClass;
-          return Object.keys(train.price).includes(classDisplayName);
-        });
-      }
+if (state.searchParams.travelClass && state.searchParams.travelClass !== "All Classes") {
+  filtered = filtered.filter((train) => {
+    if (!train.price) return false;
+    return Object.keys(train.price).includes(state.searchParams.travelClass); // 🔴 direct check
+  });
+}
+
 
       // Filter by travel class checkboxes
       const activeClassFilters = Object.keys(state.filters.travelClass).filter(
@@ -196,7 +186,7 @@ const trainSlice = createSlice({
       );
       if (activeTypeFilters.length > 0) {
         filtered = filtered.filter((train) =>
-          activeTypeFilters.some((type) => train.train_name.includes(type))
+          activeTypeFilters.some((type) => train.train_name.toLowerCase().includes(type.toLowerCase()))
         );
       }
 
