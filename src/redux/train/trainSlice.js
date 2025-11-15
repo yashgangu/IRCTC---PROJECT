@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { enrichTrainDataWithRoute } from "../../utils/trainDataHelper";
 
-const API_URL = 'https://mocki.io/v1/d819e667-3750-4c04-abdb-0cb825ebb381';
+const API_URL = 'https://mocki.io/v1/4115ceac-2508-437b-bf85-85113a97d4d1';
 
 export const fetchTrains = createAsyncThunk(
   "trains/fetchTrains",

@@ -21,6 +21,7 @@ import { observeAuthState } from "./services/authService";
 import TrainDetails from "./pages/TrainDetails";
 import BookingConfirmation from "./pages/BookingConfirmation";
 import MyBookings from "./pages/MyBookings";
+import ChatBot from "./components/ChatBot";
 
 // Component to conditionally render content based on route
 const RouteContentManager = () => {
@@ -92,6 +93,7 @@ function App() {
         <Navbar />
         <RouteContentManager />
         <Footer />
+        <ChatBot/>
       </div>
     </Router>
   );

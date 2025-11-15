@@ -1,93 +1,184 @@
 {
   "data": [
     {
-      "train_number": "12203",
-      "train_name": "Rajdhani Express",
-      "source": "Mumbai",
-      "destination": "Delhi",
-      "departure_time": "16:25",
+      "train_number": "12951",
+      "train_name": "Mumbai Rajdhani",
+      "source": "Mumbai Central",
+      "destination": "New Delhi",
+      "departure_time": "16:35",
       "arrival_time": "08:35",
-      "duration": "16h 10m",
-      "train_type": "Rajdhani",
-
-      "price": {
-        "1A": 4890,
-        "2A": 2890,
-        "3A": 1890
-      },
-
-      "availability": {
-        "1A": "AVAILABLE-12",
-        "2A": "AVAILABLE-34",
-        "3A": "WL-4"
-      },
-
-      "route": [
-        { "station": "Mumbai Central", "time": "16:25" },
-        { "station": "Vadodara", "time": "21:10" },
-        { "station": "Ratlam", "time": "00:22" },
-        { "station": "Kota", "time": "03:45" },
-        { "station": "Mathura", "time": "06:55" },
-        { "station": "New Delhi", "time": "08:35" }
-      ]
+      "days_of_operation": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      "price": { "1A": 4500, "2A": 3500, "3A": 2500 }
     },
-
+    {
+      "train_number": "12009",
+      "train_name": "Ahmedabad Shatabdi",
+      "source": "Mumbai Central",
+      "destination": "Ahmedabad Jn",
+      "departure_time": "06:00",
+      "arrival_time": "12:45",
+      "days_of_operation": ["Daily"],
+      "price": { "EC": 2000, "CC": 1200 }
+    },
     {
       "train_number": "20901",
       "train_name": "Vande Bharat Express",
-      "source": "Mumbai",
-      "destination": "Ahmedabad",
+      "source": "Mumbai Central",
+      "destination": "Gandhinagar Capital",
       "departure_time": "06:00",
-      "arrival_time": "12:25",
-      "duration": "6h 25m",
-      "train_type": "Vande Bharat",
-
-      "price": {
-        "CC": 1490,
-        "2S": 790
-      },
-
-      "availability": {
-        "CC": "AVAILABLE-56",
-        "2S": "AVAILABLE-120"
-      },
-
-      "route": [
-        { "station": "Mumbai Central", "time": "06:00" },
-        { "station": "Surat", "time": "08:35" },
-        { "station": "Vadodara", "time": "10:15" },
-        { "station": "Ahmedabad", "time": "12:25" }
-      ]
+      "arrival_time": "08:05",
+      "days_of_operation": ["Mon", "Wed", "Fri", "Sat"],
+      "price": { "CC": 1600, "EC": 2800 }
     },
-
     {
-      "train_number": "12009",
-      "train_name": "Shatabdi Express",
-      "source": "Mumbai",
-      "destination": "Gandhinagar",
-      "departure_time": "14:15",
-      "arrival_time": "21:40",
-      "duration": "7h 25m",
-      "train_type": "Shatabdi",
-
-      "price": {
-        "CC": 1290,
-        "2S": 620,
-        "SL": 890
-      },
-
-      "availability": {
-        "CC": "AVAILABLE-22",
-        "2S": "AVAILABLE-85",
-        "SL": "WL-2"
-      },
-
-      "route": [
-        { "station": "Mumbai Central", "time": "14:15" },
-        { "station": "Surat", "time": "17:05" },
-        { "station": "Vadodara", "time": "18:40" },
-        { "station": "Gandhinagar", "time": "21:40" }
-      ]
+      "train_number": "11061",
+      "train_name": "LTT Darbhanga Express",
+      "source": "LTT",
+      "destination": "Darbhanga Jn",
+      "departure_time": "12:15",
+      "arrival_time": "20:45",
+      "days_of_operation": ["Tue", "Fri"],
+      "price": { "SL": 550, "3A": 1450, "2A": 2050 }
+    },
+    {
+      "train_number": "22177",
+      "train_name": "Mahanagari Express",
+      "source": "CST Mumbai",
+      "destination": "Varanasi Jn",
+      "departure_time": "00:10",
+      "arrival_time": "04:35",
+      "days_of_operation": ["Daily"],
+      "price": { "SL": 480, "3A": 1320, "2A": 1900 }
+    },
+    {
+      "train_number": "12137",
+      "train_name": "Punjab Mail",
+      "source": "CST Mumbai",
+      "destination": "Firozpur Cantt",
+      "departure_time": "19:30",
+      "arrival_time": "05:55",
+      "days_of_operation": ["Daily"],
+      "price": { "SL": 400, "3A": 1200, "2A": 1700 }
+    },
+    {
+      "train_number": "12627",
+      "train_name": "Karnataka Express",
+      "source": "New Delhi",
+      "destination": "Bengaluru",
+      "departure_time": "21:15",
+      "arrival_time": "07:00",
+      "days_of_operation": ["Daily"],
+      "price": { "SL": 520, "3A": 1480, "2A": 2050 }
+    },
+    {
+      "train_number": "12903",
+      "train_name": "Golden Temple Mail",
+      "source": "Mumbai Central",
+      "destination": "Amritsar Jn",
+      "departure_time": "18:45",
+      "arrival_time": "23:30",
+      "days_of_operation": ["Daily"],
+      "price": { "SL": 410, "3A": 1230, "2A": 1760 }
+    },
+    {
+      "train_number": "12431",
+      "train_name": "Trivandrum Rajdhani",
+      "source": "New Delhi",
+      "destination": "Trivandrum Central",
+      "departure_time": "11:00",
+      "arrival_time": "05:25",
+      "days_of_operation": ["Tue", "Thu", "Sun"],
+      "price": { "1A": 5200, "2A": 3600, "3A": 2600 }
+    },
+    {
+      "train_number": "12433",
+      "train_name": "Chennai Rajdhani",
+      "source": "New Delhi",
+      "destination": "Chennai Central",
+      "departure_time": "15:55",
+      "arrival_time": "20:45",
+      "days_of_operation": ["Wed", "Fri", "Sun"],
+      "price": { "1A": 5000, "2A": 3400, "3A": 2400 }
+    },
+    {
+      "train_number": "12953",
+      "train_name": "Aug Kranti Rajdhani",
+      "source": "Mumbai Central",
+      "destination": "New Delhi",
+      "departure_time": "17:40",
+      "arrival_time": "10:55",
+      "days_of_operation": ["Daily"],
+      "price": { "1A": 4600, "2A": 3300, "3A": 2400 }
+    },
+    {
+      "train_number": "22903",
+      "train_name": "Bandra–Bhuj AC Superfast",
+      "source": "Bandra Terminus",
+      "destination": "Bhuj",
+      "departure_time": "16:45",
+      "arrival_time": "07:00",
+      "days_of_operation": ["Mon", "Thu"],
+      "price": { "3A": 1500, "2A": 2100, "1A": 3000 }
+    },
+    {
+      "train_number": "19019",
+      "train_name": "Dehradun Express",
+      "source": "Bandra Terminus",
+      "destination": "Dehradun",
+      "departure_time": "00:05",
+      "arrival_time": "06:45",
+      "days_of_operation": ["Tue", "Fri"],
+      "price": { "SL": 380, "3A": 1100, "2A": 1650 }
+    },
+    {
+      "train_number": "15018",
+      "train_name": "Gorakhpur Express",
+      "source": "LTT",
+      "destination": "Gorakhpur Jn",
+      "departure_time": "06:00",
+      "arrival_time": "18:25",
+      "days_of_operation": ["Daily"],
+      "price": { "SL": 420, "3A": 1250, "2A": 1850 }
+    },
+    {
+      "train_number": "11015",
+      "train_name": "Kushinagar Express",
+      "source": "LTT",
+      "destination": "Gorakhpur Jn",
+      "departure_time": "22:45",
+      "arrival_time": "08:50",
+      "days_of_operation": ["Daily"],
+      "price": { "SL": 400, "3A": 1200, "2A": 1700 }
+    },
+    {
+      "train_number": "12294",
+      "train_name": "Prayagraj Duronto",
+      "source": "Prayagraj Jn",
+      "destination": "LTT",
+      "departure_time": "22:10",
+      "arrival_time": "10:00",
+      "days_of_operation": ["Tue", "Sat"],
+      "price": { "3A": 2100, "2A": 2900, "1A": 4200 }
+    },
+    {
+      "train_number": "22199",
+      "train_name": "Sushasan Express",
+      "source": "Gwalior",
+      "destination": "Balrampur",
+      "departure_time": "14:00",
+      "arrival_time": "08:30",
+      "days_of_operation": ["Fri"],
+      "price": { "SL": 350, "3A": 1150, "2A": 1750 }
+    },
+    {
+      "train_number": "14674",
+      "train_name": "Shaheed Express",
+      "source": "Amritsar",
+      "destination": "Jaynagar",
+      "departure_time": "13:30",
+      "arrival_time": "23:50",
+      "days_of_operation": ["Daily"],
+      "price": { "SL": 450, "3A": 1300, "2A": 1900 }
     }
   ]
 }
