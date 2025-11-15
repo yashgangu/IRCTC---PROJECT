@@ -1,0 +1,93 @@
+{
+  "data": [
+    {
+      "train_number": "12203",
+      "train_name": "Rajdhani Express",
+      "source": "Mumbai",
+      "destination": "Delhi",
+      "departure_time": "16:25",
+      "arrival_time": "08:35",
+      "duration": "16h 10m",
+      "train_type": "Rajdhani",
+
+      "price": {
+        "1A": 4890,
+        "2A": 2890,
+        "3A": 1890
+      },
+
+      "availability": {
+        "1A": "AVAILABLE-12",
+        "2A": "AVAILABLE-34",
+        "3A": "WL-4"
+      },
+
+      "route": [
+        { "station": "Mumbai Central", "time": "16:25" },
+        { "station": "Vadodara", "time": "21:10" },
+        { "station": "Ratlam", "time": "00:22" },
+        { "station": "Kota", "time": "03:45" },
+        { "station": "Mathura", "time": "06:55" },
+        { "station": "New Delhi", "time": "08:35" }
+      ]
+    },
+
+    {
+      "train_number": "20901",
+      "train_name": "Vande Bharat Express",
+      "source": "Mumbai",
+      "destination": "Ahmedabad",
+      "departure_time": "06:00",
+      "arrival_time": "12:25",
+      "duration": "6h 25m",
+      "train_type": "Vande Bharat",
+
+      "price": {
+        "CC": 1490,
+        "2S": 790
+      },
+
+      "availability": {
+        "CC": "AVAILABLE-56",
+        "2S": "AVAILABLE-120"
+      },
+
+      "route": [
+        { "station": "Mumbai Central", "time": "06:00" },
+        { "station": "Surat", "time": "08:35" },
+        { "station": "Vadodara", "time": "10:15" },
+        { "station": "Ahmedabad", "time": "12:25" }
+      ]
+    },
+
+    {
+      "train_number": "12009",
+      "train_name": "Shatabdi Express",
+      "source": "Mumbai",
+      "destination": "Gandhinagar",
+      "departure_time": "14:15",
+      "arrival_time": "21:40",
+      "duration": "7h 25m",
+      "train_type": "Shatabdi",
+
+      "price": {
+        "CC": 1290,
+        "2S": 620,
+        "SL": 890
+      },
+
+      "availability": {
+        "CC": "AVAILABLE-22",
+        "2S": "AVAILABLE-85",
+        "SL": "WL-2"
+      },
+
+      "route": [
+        { "station": "Mumbai Central", "time": "14:15" },
+        { "station": "Surat", "time": "17:05" },
+        { "station": "Vadodara", "time": "18:40" },
+        { "station": "Gandhinagar", "time": "21:40" }
+      ]
+    }
+  ]
+}

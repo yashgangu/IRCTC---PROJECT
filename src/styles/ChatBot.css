@@ -1,0 +1,126 @@
+/* Chat icon button */
+.chat-icon {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #ff6f00;
+  color: #fff;
+  padding: 18px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+}
+
+.chat-icon:hover {
+  background: #e65a00;
+}
+
+/* Chat window */
+.chat-window {
+  position: fixed;
+  bottom: 90px;
+  right: 25px;
+  width: 330px;
+  height: 420px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: openChat 0.3s ease;
+}
+
+@keyframes openChat {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+.chat-header {
+  background: #003366;
+  color: #fff;
+  padding: 12px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Chat body */
+.chat-body {
+  flex: 1;
+  padding: 12px;
+  background: #f4f4f4;
+  overflow-y: auto;
+}
+
+/* Messages */
+.chat-message {
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  max-width: 75%;
+  border-radius: 10px;
+  line-height: 1.4;
+}
+
+.user-msg {
+  background: #ffebcc;
+  color: #333;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.bot-msg {
+  background: #e3f2fd;
+  color: #000;
+  align-self: flex-start;
+  margin-right: auto;
+}
+
+/* Footer */
+.chat-footer {
+  display: flex;
+  padding: 10px;
+  background: #fff;
+  border-top: 1px solid #ddd;
+}
+
+.chat-footer input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #bbb;
+  outline: none;
+}
+
+.chat-footer button {
+  margin-left: 8px;
+  padding: 10px 15px;
+  background: #ff6f00;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.chat-footer button:hover {
+  background: #e65a00;
+}
