@@ -1,3 +1,4 @@
+import { askGemini } from "./api/geminiApi";
 import {
   BrowserRouter as Router,
   Routes,
@@ -87,13 +88,17 @@ function App() {
     return <>Loading....</>;
   }
 
+  const handleChatBotMessage = async (message) => {
+    return await askGemini(message );
+  };
+
   return (
     <Router>
       <div className={styles.app}>
         <Navbar />
         <RouteContentManager />
         <Footer />
-        <ChatBot/>
+        <ChatBot onSend={handleChatBotMessage}/>
       </div>
     </Router>
   );
