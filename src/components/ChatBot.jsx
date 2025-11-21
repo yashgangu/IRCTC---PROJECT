@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/ChatBot.css";
+import { marked } from "marked";
 
 export default function ChatBot({ onSend }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,12 +43,11 @@ export default function ChatBot({ onSend }) {
 
           <div className="chat-body">
             {messages.map((msg, index) => (
-              <div
+             <div
                 key={index}
                 className={`chat-message ${msg.sender === "user" ? "user-msg" : "bot-msg"}`}
-              >
-                {msg.text}
-              </div>
+                dangerouslySetInnerHTML={{ __html: marked(msg.text) }}   // ✅ Markdown Render
+              ></div>
             ))}
           </div>
 
