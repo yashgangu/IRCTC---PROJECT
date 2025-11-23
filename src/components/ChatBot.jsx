@@ -1,65 +1,128 @@
-import React, { useState } from "react";
-import "../styles/ChatBot.css";
 import { marked } from "marked";
 
-export default function ChatBot({ onSend }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [input, setInput] = useState("");
+import { useEffect, useRef, useState } from "react";
+import { askGemini } from "../api/geminiApi";
+import "../styles/ChatBot.css";
+
+export default function Chatbot() {
+  const [open, setOpen] = useState(false); // chat window open/close
   const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const toggleChat = () => setIsOpen(!isOpen);
 
-  const sendMessage = async () => {
-    if (!input.trim()) return;
+  const messagesEndRef = useRef(null);
+
+  // Auto-scroll to bottom
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isTyping]);
+
+  // Typing effect
+  const typeEffect = async (fullText) => {
+    setIsTyping(true);
+    let displayed = "";
+
+    for (let i = 0; i < fullText.length; i++) {
+      await new Promise((res) => setTimeout(res, 15));
+      displayed += fullText[i];
+
+      setMessages((prev) => {
+        const updated = [...prev];
+        updated[updated.length - 1].text = displayed;
+        return updated;
+      });
+    }
+    setIsTyping(false);
+  };
+
+  // Send message to backend
+  const sendMessage = async (text) => {
+    if (!text.trim()) return;
+    setInput("");
 
     // Add user message
-    const userMsg = { sender: "user", text: input };
-    setMessages((prev) => [...prev, userMsg]);
+    setMessages((prev) => [...prev, { sender: "user", text }]);
+    setIsLoading(true);
 
-    // Ask backend
-    const reply = await onSend(input);
+    // Temporary bot message for typing animation
+    setMessages((prev) => [...prev, { sender: "bot", text: "" }]);
 
-    // Add bot reply
-    const botMsg = { sender: "bot", text: reply };
-    setMessages((prev) => [...prev, botMsg]);
+    const response = await askGemini(text);
+    setIsLoading(false);
 
-    setInput("");
+    await typeEffect(response);
   };
 
   return (
     <>
-      {/* Chat Icon Button */}
-      <div className="chat-icon" onClick={toggleChat}>
-        💬
-      </div>
+      {/* Floating Chat Button */}
+      {!open && (
+        <div className="chat-icon" onClick={() => setOpen(true)}>
+          💬
+        </div>
+      )}
 
       {/* Chat Window */}
-      {isOpen && (
+      {open && (
         <div className="chat-window">
+          {/* Header */}
           <div className="chat-header">
-            <span>IRCTC Assistant</span>
-            <button className="close-btn" onClick={toggleChat}>×</button>
+            IRCTC Chatbot
+            <button className="close-btn" onClick={() => setOpen(false)}>
+              ×
+            </button>
           </div>
 
+          {/* Chat Body */}
           <div className="chat-body">
-            {messages.map((msg, index) => (
-             <div
-                key={index}
-                className={`chat-message ${msg.sender === "user" ? "user-msg" : "bot-msg"}`}
-                dangerouslySetInnerHTML={{ __html: marked(msg.text) }}   // ✅ Markdown Render
-              ></div>
+            {messages.map((msg, i) => (
+              <div
+                key={i}
+                className={`chat-message ${
+                 msg.sender === "user" ? "user-msg" : "bot-msg"
+              } ${msg.text === "..." ? "loading-msg" : ""}`}
+                dangerouslySetInnerHTML={{ __html: marked(msg.text || "") }}
+
+              />
             ))}
+
+            {/* Typing indicator */}
+            {isTyping && (
+              <div className="typing">
+                <div className="dot"></div>
+                <div className="dot"></div>
+                <div className="dot"></div>
+              </div>
+            )}
+
+            <div ref={messagesEndRef}></div>
           </div>
 
+          {/* Suggested Quick Replies */}
+          <div style={{ display: "flex", gap: 6, padding: "8px" }}>
+            <button onClick={() => sendMessage("Check PNR status")}>
+              Check PNR
+            </button>
+            <button onClick={() => sendMessage("Train running status")}>
+              Train Status
+            </button>
+            <button onClick={() => sendMessage("Book a train ticket")}>
+              Book Ticket
+            </button>
+          </div>
+
+          {/* Footer Input */}
           <div className="chat-footer">
             <input
-              type="text"
-              placeholder="Ask about trains, bookings..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+              placeholder="Ask IRCTC Chatbot..."
+              onKeyDown={(e) => e.key === "Enter" && sendMessage(input)}
             />
-            <button onClick={sendMessage}>Send</button>
+
+            <button onClick={() => sendMessage(input)}>Send</button>
           </div>
         </div>
       )}
